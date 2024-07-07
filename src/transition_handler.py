@@ -1,11 +1,10 @@
 from video_reader import VideoReader
-from typing import Iterator
 
 class TransitionHandler:
     def __init__(self, video_reader: VideoReader):
         self.__video_reader = video_reader
 
-    def get_transition_read_text(self):
+    def handle_transitions(self):
         transition_read_text = []
 
         for frame_text in self.__video_reader:
