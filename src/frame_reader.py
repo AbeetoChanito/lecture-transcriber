@@ -1,7 +1,7 @@
 import cv2
 
 class FrameReader:
-    def __init__(self, reader: cv2.VideoCapture, read_rate = 0):
+    def __init__(self, reader: cv2.VideoCapture, read_rate: float = 0):
         self.__reader = reader
 
         video_fps = reader.get(cv2.CAP_PROP_FPS)

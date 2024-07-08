@@ -1,4 +1,5 @@
 from os.path import splitext
+from werkzeug.datastructures import FileStorage
 import cv2
 import numpy as np
 import tempfile
@@ -11,21 +12,21 @@ class InvalidFileExtension(Exception):
 class VideoNotOpening(Exception):
     pass
 
-def is_video_ext(filename):
+def is_video_ext(filename: str):
     _, ext = splitext(filename)
     ext = ext.lower()
 
     return ext, any(ext.lower().endswith(valid_ext) for valid_ext in VIDEO_FILE_EXTENSIONS)
 
-def load_video(file):
-    ext, valid = is_video_ext(file.name)
+def load_video(file: FileStorage):
+    ext, valid = is_video_ext(file.filename)
 
     if not valid:
         raise InvalidFileExtension
 
     with tempfile.NamedTemporaryFile(suffix=ext) as temp_file:
         temp_file_name = temp_file.name
-        temp_file.write(file.read())
+        temp_file.write(file.stream.read())
 
         video_capture = cv2.VideoCapture(temp_file_name)
 
