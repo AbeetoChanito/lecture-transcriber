@@ -1,8 +1,8 @@
 from os.path import splitext
 from werkzeug.datastructures import FileStorage
+from tempfile import NamedTemporaryFile
 import cv2
 import numpy as np
-import tempfile
 
 VIDEO_FILE_EXTENSIONS = ["mp4", "avi", "mov"]
 
@@ -24,13 +24,12 @@ def load_video(file: FileStorage):
     if not valid:
         raise InvalidFileExtension
 
-    with tempfile.NamedTemporaryFile(suffix=ext) as temp_file:
-        temp_file_name = temp_file.name
-        temp_file.write(file.stream.read())
+    with NamedTemporaryFile(suffix=ext) as video_temp_file:
+        video_temp_file.write(file.stream.read())
 
-        video_capture = cv2.VideoCapture(temp_file_name)
+        video_capture = cv2.VideoCapture(video_temp_file.name)
 
         if not video_capture.isOpened():
             raise VideoNotOpening
-
+            
     return video_capture
