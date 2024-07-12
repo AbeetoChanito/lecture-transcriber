@@ -1,5 +1,5 @@
 from flask import *
-from file_handling import load_video, InvalidFileExtension, VideoNotOpening
+from file_handling import load_video
 
 app = Flask(__name__)
 
@@ -15,7 +15,5 @@ def upload_video():
     
     try:
         video = load_video(file)
-    except InvalidFileExtension:
-        return jsonify({"error": "invalid file extension"}), 400
-    except VideoNotOpening:
-        return jsonify({"error": "video not opening"}), 400
+    except AssertionError as e:
+        return jsonify({"error": str(e)}), 400

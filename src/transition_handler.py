@@ -1,6 +1,4 @@
-from video_reader import VideoReader
-
-def handle_transitions(video_reader: VideoReader):
+def handle_transitions(video_reader):
     transition_read_text = []
 
     for frame_text in video_reader:

@@ -5,19 +5,22 @@ from tempfile import NamedTemporaryFile
 recognizer = Recognizer()
 
 AUDIO_FILE_EXTENSION = ".wav"
+VALID_RECOGNIZER_TYPES = ["sphinx", "google"]
 
 def extract_video(video_path: str, output_path: str):
     video = VideoFileClip(video_path)
     audio = video.audio
-    audio.write_audiofile(output_path, codec="pcm_s16le")
+    audio.write_audiofile(output_path, codec="pcm_s16le", logger=None)
 
-def recognize_speech(audio_file: AudioFile):
+def recognize_speech(audio_file: AudioFile, recognizer_type="sphinx"):
+    assert recognizer_type in VALID_RECOGNIZER_TYPES, "invalid recognizer type"
+
     with audio_file as source:
         audio = recognizer.record(source)
 
-        return recognizer.recognize_google(audio)
+        return eval(f"recognizer.recognize_{recognizer_type}(audio)")
 
-def extract_from_video(video_path: str):
+def transcribe_audio(video_path: str):
     with NamedTemporaryFile(suffix=AUDIO_FILE_EXTENSION) as audio_temp_file:
         output_path = audio_temp_file.name
         
@@ -25,5 +28,3 @@ def extract_from_video(video_path: str):
         audio_file = AudioFile(output_path)
 
         return recognize_speech(audio_file)
-    
-print(extract_from_video("sampleVideo.mp4"))
