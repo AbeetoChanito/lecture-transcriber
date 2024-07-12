@@ -23,5 +23,9 @@ def upload_video():
         "audio_transcribed": audio_transcribed
     }), 200
 
+@app.route("/")
+def base():
+    return send_from_directory('../client/build', 'index.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
