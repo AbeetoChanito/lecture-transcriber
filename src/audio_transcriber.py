@@ -13,7 +13,8 @@ def extract_video(video_path: str, output_path: str):
     audio.write_audiofile(output_path, codec="pcm_s16le", logger=None)
 
 def recognize_speech(audio_file: AudioFile, recognizer_type="sphinx"):
-    assert recognizer_type in VALID_RECOGNIZER_TYPES, "invalid recognizer type"
+    if recognizer_type not in VALID_RECOGNIZER_TYPES:
+        raise Exception("invalid recognizer type")
 
     with audio_file as source:
         audio = recognizer.record(source)

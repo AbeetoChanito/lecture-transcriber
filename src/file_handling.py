@@ -17,7 +17,8 @@ def is_video_ext(filename: str):
 def load_video(file: FileStorage):
     ext, valid = is_video_ext(file.filename)
     
-    assert valid, "Invalid file extension"
+    if not valid:
+        raise Exception("Invalid file extension")
 
     with NamedTemporaryFile(suffix=ext) as video_temp_file:
         video_path = video_temp_file.name
@@ -25,7 +26,8 @@ def load_video(file: FileStorage):
 
         video_capture = cv2.VideoCapture(video_path)
 
-        assert video_capture.isOpened(), "Video capture not opening"
+        if not video_capture.isOpened():
+            raise Exception("Video capture not opening")
 
         video_transcribed = transcribe_video(video_capture)
         audio_transcribed = transcribe_audio(video_path)
