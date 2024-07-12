@@ -25,7 +25,14 @@ def upload_video():
 
 @app.route("/")
 def base():
-    return send_from_directory('../client/build', 'index.html')
+    return send_from_directory("../client/build", "index.html")
+
+@app.route("/<path:path>")
+def home(path):
+    if not path.endswith(".html"):
+        path += ".html"
+    
+    return send_from_directory("../client/build", path)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=3000)
