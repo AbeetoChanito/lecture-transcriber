@@ -28,7 +28,4 @@ def transcribe_video(capture: VideoCapture, read_rate: float = 5):
     frame_reader = iter(FrameReader(capture, read_rate))
     video_reader = iter(VideoReader(frame_reader))
 
-    return "\n".join([
-        " ".join(phrase)
-        for phrase in handle_transitions(video_reader)
-    ])
+    return handle_transitions(video_reader)
