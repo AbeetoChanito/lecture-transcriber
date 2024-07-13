@@ -44,8 +44,8 @@
     }
 </script>
 
-<label for="avatar">Upload a video:</label>
-<input accept="video/mp4" bind:files id="avatar" name="avatar" type="file"/>
+<label for="video">Upload a video:</label>
+<input accept="video/mp4" bind:files id="video" name="video" type="file"/>
 
 {#if uploadError}
     <p>Error uploading file! {uploadError}</p>
