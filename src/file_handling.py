@@ -2,11 +2,10 @@ from os.path import splitext
 from werkzeug.datastructures import FileStorage
 from tempfile import NamedTemporaryFile
 from video_transcriber import transcribe_video
-from audio_transcriber import transcribe_audio
 from io import BytesIO
 import cv2
 
-VIDEO_FILE_EXTENSIONS = ["mp4", "avi", "mov"]
+VIDEO_FILE_EXTENSIONS = ["mp4"]
 
 def is_video_ext(filename: str):
     _, ext = splitext(filename)
@@ -30,9 +29,8 @@ def load_video(file: FileStorage):
             raise Exception("Video capture not opening")
 
         video_transcribed = transcribe_video(video_capture)
-        audio_transcribed = transcribe_audio(video_path)
             
-        return video_transcribed, audio_transcribed
+        return video_transcribed
 
 def load_file_storage_from_path(path: str):
     file = open(path, "rb")
