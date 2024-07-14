@@ -124,13 +124,14 @@ $: if (files) {
     .output {
         width: 1000px;
         height: auto;
-        padding: 10px;
+        padding: 25px;
         margin: 10px 0;
         border: 2px solid #ccc;
         box-sizing: border-box;
         position: relative;
         left: 10px;
         font-size: 10px;
+        white-space: pre-line;
     }
 </style>
 
