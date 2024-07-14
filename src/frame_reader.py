@@ -18,8 +18,10 @@ class FrameReader:
         
         return frame
 
-    def __next__(self):        
+    def __next__(self):      
+        frame = self.__get_frame()
+
         for _ in range(self.__read_rate - 1):
             _ = self.__get_frame()
 
-        return self.__get_frame()
+        return frame

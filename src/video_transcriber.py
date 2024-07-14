@@ -18,7 +18,7 @@ class VideoReader:
             frame = next(self.__frame_reader)
             processed_text = reader.readtext(frame, detail=0)
 
-            if self.__last_text is not None and self.__last_text != processed_text:
+            if self.__last_text != processed_text:
                 self.__last_text = processed_text
                 return processed_text
 
