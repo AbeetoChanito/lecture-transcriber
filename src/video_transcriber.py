@@ -24,7 +24,7 @@ class VideoReader:
 
             self.__last_text = processed_text
 
-def transcribe_video(capture: VideoCapture, read_rate: float = 5):
+def transcribe_video(capture: VideoCapture, read_rate: float = 1):
     frame_reader = iter(FrameReader(capture, read_rate))
     video_reader = iter(VideoReader(frame_reader))
 
