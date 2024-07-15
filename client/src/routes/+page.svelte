@@ -60,7 +60,8 @@ $: if (files) {
 </script>
 
 <svelte:head>
-  <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
+    <title>Video Transcriber</title>
+    <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
 </svelte:head>
 
 <style>
