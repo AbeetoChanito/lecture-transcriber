@@ -37,7 +37,7 @@ async function submit(): Promise<void> {
     try {
         const response = await uploadFile(formData);
         videoTranscribed = response["video_transcribed"];
-        output = `Video transcribed:\n${videoTranscribed}`;
+        output = `Lecture transcribed:\n${videoTranscribed}`;
     } catch (error) {
         uploadError = error;
         output = `Error uploading file:\n${uploadError}`;
@@ -60,7 +60,7 @@ $: if (files) {
 </script>
 
 <svelte:head>
-    <title>Video Transcriber</title>
+    <title>Lecture Transcriber</title>
     <link href="https://fonts.googleapis.com/css?family=Lexend" rel="stylesheet">
 </svelte:head>
 
@@ -139,7 +139,7 @@ $: if (files) {
 <body>
 
 <div class="nav">
-    <a href="/">Video Transcriber</a>
+    <a href="/">Lecture Transcriber</a>
     <a href="https://github.com/AbeetoChanito" class="credit" target="_blank">made by Abinav Kumar</a>
 </div>
 
