@@ -86,13 +86,6 @@ $: if (files) {
         left: 10px;
     }
 
-    .nav .credit {
-        color: #f2f2f2;
-        font-size: 20px;
-        padding: 25px;
-        text-decoration: underline;
-    }
-
     .upload-video {
         width: 500px;
         height: auto;
@@ -140,7 +133,6 @@ $: if (files) {
 
 <div class="nav">
     <a href="/">Lecture Transcriber</a>
-    <a href="https://github.com/AbeetoChanito" class="credit" target="_blank">made by Abinav Kumar</a>
 </div>
 
 <div class="upload-video">
